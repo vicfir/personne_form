@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="post">
+    {%csrf_token%}
+    {{form}}
+    <input type="submit">
+</form>
+
+<section>
+    <h1>All</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for personne in personnes %}
+        <tr {% if personne.age > 24 %}class="mauve-row"{% elif personne.age == 23 or personne.age == 24 %}class="blue-row"{% endif %}>
+            <th>{{personne.nom}}</th>
+            <td>{{personne.genre}}</td>
+            <td>{{personne.email}}</td>
+            <td>{{personne.age}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add' %}">Ajouter une personne</a>
+</section>
+<section>
+    <h1>Filles</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for femme in femmes %}
+          <tr>
+            <th>{{femme.nom}}</th>
+            <td>{{femme.genre}}</td>
+            <td>{{femme.email}}</td>
+            <td>{{femme.age}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add' %}">Ajouter une personne</a>
+</section>
+<section>
+    <h1>Garcons</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for homme in hommes %}
+          <tr>
+            <th>{{homme.nom}}</th>
+            <td>{{homme.genre}}</td>
+            <td>{{homme.email}}</td>
+            <td>{{homme.age}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add' %}">Ajouter une personne</a>
+</section>
+
+
+
+{% endblock content  %}
